@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -r esm src/index.js"
+    "start": "nodemon -r esm ./src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^15.1.0",
+    "mongoose": "^5.9.19",
     "nodemon": "^2.0.4"
   }
 }

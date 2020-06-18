@@ -1,17 +1,37 @@
-const { ApolloServer } = require('apollo-server-express');
-const { typeDefs, resolvers } = require('./schema');
 import express from 'express'
+import server from './server'
+import mongoose from 'mongoose'
 const app = express()
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
+const DB_USER = ""
+const DB_PASS = ""
+const DB_NAME = ""
+const PORT = process.env.PORT || 5000
 
-server.applyMiddleware({ app });
 
-const PORT = process.env.PORT || 4444
+const createServer = async () => {
+  try {
+     await mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0-bajm1.mongodb.net/${DB_NAME}?retryWrites=true&w=majority` ,
+       {
+         useUnifiedTopology : true ,
+       }
+     )
+     
+     
+     server.applyMiddleware({ app })
+     
+     
+     app.listen(5000, () => {
 
-app.listen({ port: PORT }, () =>
-  console.log(`🚀 Server ready at http://localhost:4444${server.graphqlPath}`)
-)
+      console.log(`🚀 Server ready at http://localhost:5000 ${server.graphqlPath}`)
+
+    }
+      
+     )
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+createServer ()
