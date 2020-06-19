@@ -1,7 +1,8 @@
 // import { gql } from 'apollo-server-express'
-import ByShema from '../schema/models/models'
 
-
+// import bcrypt from 'bcrypt'
+import Mutation from './mutation'
+import Query from './query'
 // //mock database 
 // const users = [
 //     {
@@ -24,24 +25,13 @@ import ByShema from '../schema/models/models'
 
 // const me = users[0]
 
-export const resolvers = {
-    Query: {
-        me: (parent , args , context , info) => me ,
-        user: (parent , args , context , info) => {
-            const id = args.id
-            const user = users.find( u => u.id === id )
 
-            return user
-        },
-        users: (parent , args , context , info) => {
-            return ByShema.find()
-        } ,
-    },
-    Mutation: {
-        signup: (parent , args , context , info) => {
-            return ByShema.create(args)
-        }
-    }
+
+const resolvers = {
+    Query ,
+    Mutation
+
+    
 }
 
 export default resolvers

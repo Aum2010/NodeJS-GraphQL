@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 // const { resolvers } = require('./resolvers/resolvers');
 
 
-import { resolvers } from '../resolvers/resolvers'
+import  resolvers  from '../resolvers/resolvers'
 // import { typeDefs } from "../schema/typedef" <-- Old Version with ../schema/typedef.js
 import path from 'path'
 import fs from 'fs'

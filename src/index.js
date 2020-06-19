@@ -3,14 +3,18 @@ import server from './server'
 import mongoose from 'mongoose'
 const app = express()
 
-const DB_USER = ""
-const DB_PASS = ""
-const DB_NAME = ""
-const PORT = process.env.PORT || 5000
+import dotenv from 'dotenv'
+dotenv.config( )
+// const DB_USER = "Aumaumone2009"
+// const DB_PASS = "Aum0879862267"
+// const DB_NAME = "NodeJsGraphQL"
+// const PORT = process.env.PORT || 5000
 
+const { DB_NAME , DB_PASS , DB_USER , PORT} = process.env
 
 const createServer = async () => {
   try {
+     console.log(DB_NAME)
      await mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0-bajm1.mongodb.net/${DB_NAME}?retryWrites=true&w=majority` ,
        {
          useUnifiedTopology : true ,
@@ -21,9 +25,9 @@ const createServer = async () => {
      server.applyMiddleware({ app })
      
      
-     app.listen(5000, () => {
+     app.listen(PORT, () => {
 
-      console.log(`🚀 Server ready at http://localhost:5000 ${server.graphqlPath}`)
+      console.log(`🚀 Server ready at http://localhost:${PORT} ${server.graphqlPath}`)
 
     }
       
